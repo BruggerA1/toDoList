@@ -1,0 +1,92 @@
+* {
+	box-sizing: border-box;
+
+	margin: 0;
+	padding: 0;
+	
+	border: dashed 1px;
+}
+
+body {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 25vw 1fr;
+	grid-template-rows: 10vh 1fr;
+	grid-template-areas: 
+		"header header"
+		"sidebar content"
+	;
+}
+
+header {
+	grid-area: header;
+}
+
+#sidebar {
+	grid-area: sidebar;
+}
+
+#content {
+	grid-area: content;
+}
+
+.projectCard {
+	display: grid;
+	grid-template-columns: 2fr 5fr 2fr;
+	text-align: center;
+}
+
+#projectModal {
+	position: absolute;
+	height: 40vh;
+	width: 50vw;
+	margin: 30vh 25vw;
+	text-align: center;
+	line-height: 40vh;
+	background-color: red;
+}
+
+.itemCardSummary {
+	display: grid;
+	grid-template-columns: 2fr 14fr 4fr;
+	align-items: center;
+	justify-items: center;
+	height: 5vh;
+}
+
+.itemCardDetailsContainer {
+	height: 25vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 3vh 6vh 12vh 4vh   ;
+	grid-template-areas: 
+	'priority priority'
+	'description description'
+	'notes notes'
+	'edit delete';
+	text-align: center;
+}
+
+.itemPriority {
+	grid-area: priority;
+	line-height: 3vh;
+}
+
+.itemDescription {
+	grid-area: description;
+	line-height: 6vh;
+}
+
+.itemNotes {
+	grid-area: notes;
+	padding: 10px;
+	text-align: justify;
+}
+
+.itemEdit {
+	grid-area: edit;
+}
+
+.itemDelete {
+	grid-area: delete;
+}
