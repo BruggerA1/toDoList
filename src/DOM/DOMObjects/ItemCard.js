@@ -1,4 +1,5 @@
 import { CardElement } from "./CardElement";
+import { priorityRadio } from "./priorityRadio";
 
 export const itemCard = (item) => {
 	const details = CardElement('details', 'itemCardDetails');
@@ -10,7 +11,12 @@ export const itemCard = (item) => {
 	const itemCheckBox = CardElement('input', 'itemCardCheckbox');
 	itemCheckBox.type = 'checkbox';
 
-	const itemTitle = CardElement('div', 'itemCardTitle' , item.title);
+	const itemTitle = (() => {
+		const itemTitle = CardElement('input', 'itemCardTitle', item.title);
+		itemTitle.readOnly = 'true';
+
+		return itemTitle;
+	})();
 
 	const itemDate = ((dueDate) => {
 		const itemDate = CardElement('input', 'itemCardDate');
@@ -24,9 +30,28 @@ export const itemCard = (item) => {
 		return itemDate;
 	})(item.dueDate);
 
-	const itemPriority = CardElement('div', 'itemPriority', item.priority);
+	const itemPriority = ((priority) => {
+		const itemPriority = CardElement('div', 'itemPriority');
+		const lowPriority = priorityRadio('LOW', item.title);
+		const medPriority = priorityRadio('MEDIUM', item.title);
+		const highPriority = priorityRadio('HIGH', item.title);
 
-	const itemDescription = CardElement('div', 'itemDescription', item.description);
+		(priority == 'high') ? highPriority.radioButton.checked = true 
+			: (priority == 'medium') ? medPriority.radioButton.checked = true
+				: lowPriority.radioButton.checked = true;
+
+		itemPriority.append(lowPriority, medPriority , highPriority);
+
+		return Object.assign(itemPriority, {lowPriority, medPriority, highPriority});
+	})(item.priority);
+
+
+	const itemDescription = (() => {
+		const itemDescription = CardElement('input', 'itemDescription', item.description);
+		itemDescription.readOnly = 'true';
+
+		return itemDescription;
+	})();
 
 	const itemNotes = CardElement('textarea', 'itemNotes', item.notes);
 	itemNotes.readOnly = 'true';
@@ -39,7 +64,31 @@ export const itemCard = (item) => {
 		itemEdit.addEventListener('click', () => {
 			editMode = !editMode;
 		
-			(editMode == true) ? itemNotes.removeAttribute('readOnly') : itemNotes.readOnly = 'true';
+			if (editMode == true) {
+				itemNotes.removeAttribute('readOnly');
+				itemTitle.removeAttribute('readOnly');
+				itemDescription.removeAttribute('readOnly');
+				itemDate.removeAttribute('readOnly');
+				itemPriority.lowPriority.radioButton.disabled = false;
+				itemPriority.medPriority.radioButton.disabled = false;
+				itemPriority.highPriority.radioButton.disabled = false;
+			} else {
+				itemNotes.readOnly = 'true';
+				itemTitle.readOnly = 'true';
+				itemDescription.readOnly = 'true';
+				itemDate.readOnly = 'true';
+				itemPriority.lowPriority.radioButton.disabled = true;
+				itemPriority.medPriority.radioButton.disabled = true;
+				itemPriority.highPriority.radioButton.disabled = true;
+
+				item.title = itemTitle.value;
+				item.dueDate = itemDate.value;
+				item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'high'
+					: (itemPriority.medPriority.radioButton.checked == true) ? 'medium'
+						: 'low';
+				item.description = itemDescription.value;
+				item.notes = itemNotes.value;
+			}
 
 			return editMode;
 		});

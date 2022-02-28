@@ -70,6 +70,8 @@ header {
 .itemPriority {
 	grid-area: priority;
 	line-height: 3vh;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .itemDescription {
@@ -90,3 +92,4 @@ header {
 .itemDelete {
 	grid-area: delete;
 }
+

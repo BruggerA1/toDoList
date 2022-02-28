@@ -11,9 +11,9 @@ export const ui = UI();
 const projectContainer = ui.sidebar.projectContainer;
 const content = ui.content;
 
-const item1 = Item('Walk Dog', 'Take Winston For a Walk', '2022-03-25', 'HIGH', 'Winston Needs to take a long walk to get ready for the Boston Marathon this Spring.');
+const item1 = Item('Walk Dog', 'Take Winston For a Walk', '2022-03-25', 'high', 'Winston Needs to take a long walk to get ready for the Boston Marathon this Spring.');
 
-const item2 = Item('Go To Doctor', 'Go to Doctor for Vyvanse', '1993-02-04', 'MEDIUM', 'Telehealth Link : ########');
+const item2 = Item('Go To Doctor', 'Go to Doctor for Vyvanse', '1993-02-04', 'medium', 'Telehealth Link : ########');
 
 const item3 = Item('item4', 'description4', '1960-01-14', 'priority', 'notes');
 const item4 = Item('item5', 'description5', '1993-09-17', 'priority', 'notes');

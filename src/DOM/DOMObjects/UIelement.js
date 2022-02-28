@@ -4,7 +4,7 @@ export const UIelement = (element, id = null) => {
 	const UIprototype = DOMprototype(element, id);
 	
 	const UItext = (text) => {
-		UIprototype.innerText = text
+		(element == 'input') ? UIprototype.value = text : UIprototype.innerText = text;
 	}
 	
 	const addClass = (...items) => {
