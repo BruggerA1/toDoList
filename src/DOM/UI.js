@@ -44,9 +44,5 @@ export const UI = () => {
 	})
 
 
-	// projectCard.addEventListener('click', () => {
-	// 	project.itemList.forEach(item => console.log(item));
-	// });
-
 	return Object.assign(UI, { sidebar, content })
 }

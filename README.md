@@ -1,3 +1,4 @@
 # TO DO
 
-+ Clean Up itemCard Logic
++ Re-eval index/UI/etc
++ Refine objects
