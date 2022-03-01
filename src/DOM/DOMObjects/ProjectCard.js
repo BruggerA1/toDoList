@@ -15,6 +15,7 @@ export const ProjectCard = (project) => {
 
 	projectCard.addEventListener('click', () => {
 		ui.content.reload();
+		ui.content.currentProject.UItext(cardText.innerText)
 		project.itemList.forEach(item => {
 			ui.content.addItem(itemCard(item));
 		});

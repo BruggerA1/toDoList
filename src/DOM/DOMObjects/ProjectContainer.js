@@ -27,5 +27,5 @@ export const ProjectContainer = () => {
 		})
 	}
 
-	return Object.assign(details, { addProject, update })
+	return Object.assign(details, {projectList, addProject, update })
 };

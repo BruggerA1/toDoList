@@ -1,102 +1,130 @@
 import { CardElement } from "./CardElement";
-import { priorityRadio } from "./priorityRadio";
+import { PriorityRadio } from "./PriorityRadio";
 
 export const itemCard = (item) => {
 	const details = CardElement('details', 'itemCardDetails');
-
 	const summary = CardElement('summary','itemCardSummary');
-
 	const detailsContainer = CardElement('div', 'itemCardDetailsContainer');
 
-	const itemCheckBox = CardElement('input', 'itemCardCheckbox');
-	itemCheckBox.type = 'checkbox';
+	const itemCheckBox = (() => {
+		const itemCheckBox = CardElement('input', 'itemCardCheckbox');
+
+		itemCheckBox.type = 'checkbox';
+
+		return itemCheckBox;
+	})();
 
 	const itemTitle = (() => {
 		const itemTitle = CardElement('input', 'itemCardTitle', item.title);
-		itemTitle.readOnly = 'true';
+		itemTitle.readOnly = true;
 
 		return itemTitle;
 	})();
 
-	const itemDate = ((dueDate) => {
-		const itemDate = CardElement('input', 'itemCardDate');
-		itemDate.type = 'date';
-		itemDate.value = dueDate;
-		itemDate.readOnly = 'true';
+	const itemDate = (() => {
+		const itemDate = CardElement('input', 'itemCardDate', item.dueDate);
 
-		itemDate.addEventListener('change', () => {
-		});
+		itemDate.type = 'date';
+		itemDate.readOnly = true;
 
 		return itemDate;
-	})(item.dueDate);
 
-	const itemPriority = ((priority) => {
+	})();
+
+	const itemPriority = (() => {
 		const itemPriority = CardElement('div', 'itemPriority');
-		const lowPriority = priorityRadio('LOW', item.title);
-		const medPriority = priorityRadio('MEDIUM', item.title);
-		const highPriority = priorityRadio('HIGH', item.title);
 
-		(priority == 'high') ? highPriority.radioButton.checked = true 
-			: (priority == 'medium') ? medPriority.radioButton.checked = true
+		const lowPriority = PriorityRadio('low', item.title);
+		const medPriority = PriorityRadio('medium', item.title);
+		const highPriority = PriorityRadio('high', item.title);
+
+		(item.priority == 'high') ? highPriority.radioButton.checked = true 
+			: (item.priority == 'medium') ? medPriority.radioButton.checked = true
 				: lowPriority.radioButton.checked = true;
 
 		itemPriority.append(lowPriority, medPriority , highPriority);
 
 		return Object.assign(itemPriority, {lowPriority, medPriority, highPriority});
-	})(item.priority);
-
+	})();
 
 	const itemDescription = (() => {
 		const itemDescription = CardElement('input', 'itemDescription', item.description);
+
 		itemDescription.readOnly = 'true';
 
 		return itemDescription;
 	})();
 
-	const itemNotes = CardElement('textarea', 'itemNotes', item.notes);
-	itemNotes.readOnly = 'true';
+	const itemNotes = (() => {
+		const itemNotes = CardElement('textarea', 'itemNotes', item.notes);
+
+		itemNotes.readOnly = 'true';
+
+		return itemNotes;
+	})();
 
 	const itemEdit = (() => {
-		const itemEdit = CardElement('button', 'itemEdit', 'edit');
-		
+		const itemEdit = (() => {
+			const itemEdit = CardElement('input', 'itemEdit', 'edit');
+			itemEdit.type = 'button';
+
+			itemEdit.addEventListener('click', () => {
+				toggleEdit();
+				updateItem();
+			});
+
+			return itemEdit;
+		})();
+
 		let editMode = false;
 
-		itemEdit.addEventListener('click', () => {
-			editMode = !editMode;
 		
+		const toggleEdit = () => {
+			const input = [
+				itemTitle,
+				itemDate,
+				itemDescription,
+				itemNotes,
+			];
+			const radio = [
+				itemPriority.lowPriority.radioButton,
+				itemPriority.medPriority.radioButton,
+				itemPriority.highPriority.radioButton,
+			];
+
+			editMode = !editMode;
+
 			if (editMode == true) {
-				itemNotes.removeAttribute('readOnly');
-				itemTitle.removeAttribute('readOnly');
-				itemDescription.removeAttribute('readOnly');
-				itemDate.removeAttribute('readOnly');
-				itemPriority.lowPriority.radioButton.disabled = false;
-				itemPriority.medPriority.radioButton.disabled = false;
-				itemPriority.highPriority.radioButton.disabled = false;
+				input.forEach(item => item.readOnly = false);
+				radio.forEach(item => item.disabled = false);
 			} else {
-				itemNotes.readOnly = 'true';
-				itemTitle.readOnly = 'true';
-				itemDescription.readOnly = 'true';
-				itemDate.readOnly = 'true';
-				itemPriority.lowPriority.radioButton.disabled = true;
-				itemPriority.medPriority.radioButton.disabled = true;
-				itemPriority.highPriority.radioButton.disabled = true;
+				input.forEach(item => item.readOnly = true);
+				radio.forEach(item => item.disabled = true);
+			};
+		};
 
-				item.title = itemTitle.value;
-				item.dueDate = itemDate.value;
-				item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'high'
-					: (itemPriority.medPriority.radioButton.checked == true) ? 'medium'
-						: 'low';
-				item.description = itemDescription.value;
-				item.notes = itemNotes.value;
-			}
+		const updateItem = () => {
+			item.title = itemTitle.value;
+			item.dueDate = itemDate.value;
+			item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'high'
+				: (itemPriority.medPriority.radioButton.checked == true) ? 'medium'
+					: 'low';
+			item.description = itemDescription.value;
+			item.notes = itemNotes.value;
+		};
 
-			return editMode;
-		});
+		
 
 		return itemEdit;
 	})();
 
-	const itemDelete = CardElement('button', 'itemDelete', 'delete');
+	const itemDelete = (() => {
+		const itemDelete = CardElement('input', 'itemDelete', 'delete');
+
+		itemDelete.type = 'button';
+		
+		return itemDelete;
+	})();
 
 	summary.append(itemCheckBox, itemTitle, itemDate)
 	

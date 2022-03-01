@@ -4,7 +4,8 @@ import { UIelement } from "./DOMObjects/UIelement";
 export const Content = () => {
 	const content = UIelement('main', 'content');
 	const addItemButton = addButton('Item');
-	content.append(addItemButton);
+	const currentProject = UIelement('div', 'currentProject');
+	content.append(currentProject);
 
 	const addItem = (item) => {
 		content.append(item);
@@ -12,8 +13,8 @@ export const Content = () => {
 	
 	const reload = () => {
 		content.UItext('');
-		content.append(addItemButton);
+		content.append(addItemButton, currentProject);
 	};
 
-	return Object.assign(content, {addItem, reload});
+	return Object.assign(content, {addItemButton, currentProject, addItem, reload});
 }
