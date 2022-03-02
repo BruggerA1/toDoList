@@ -4,7 +4,6 @@ import { Sidebar } from "./Sidebar";
 import { Content } from "./Content";
 import { ProjectModal } from "./ProjectModal";
 import { Project } from "../Objects/Project";
-import { ui } from "..";
 import { itemCard } from "./DOMObjects/ItemCard";
 import { Item } from "../Objects/Item";
 
@@ -24,14 +23,13 @@ export const UI = () => {
 	
 	content.addItemButton.addEventListener('click', () => {
 		const newItem = Item();
-		ui.content.addItem(itemCard(newItem));
-		console.log(ui.content.currentProject.innerText);
-		console.log(ui.sidebar.projectContainer.projectList);
-		ui.sidebar.projectContainer.projectList.forEach(project => {
-			if (project.title == ui.content.currentProject.innerText) {
+		content.addItem(itemCard(newItem));
+		sidebar.projectContainer.projectList.forEach(project => {
+			if (project.title == content.currentProject.innerText) {
 				project.addItem(newItem);
 			}
 		})
+		sidebar.projectContainer.update()
 	})
 
 	projectModal.addProjectButton.addEventListener('click', () => {
@@ -42,7 +40,6 @@ export const UI = () => {
 	projectModal.closeModal.addEventListener('click', () => {
 		projectModal.remove();
 	})
-
 
 	return Object.assign(UI, { sidebar, content })
 }
