@@ -5,9 +5,7 @@ export const CardElement = (element, className = null, text = null) => {
 
 	if (className != null) CEprototype.addClass(className);
 
-	if (text != null) {
-		(element == 'input') ? CEprototype.value = text : CEprototype.UItext(text);
-	}
+	if (text != null) CEprototype.UItext(text);
 	
 	return Object.assign(CEprototype, {});
 };

@@ -1,8 +1,8 @@
-import { DOMprototype } from "./DOMprototype";
-
 export const UIelement = (element, id = null) => {
-	const UIprototype = DOMprototype(element, id);
-	
+	const UIprototype = (element == 'body') ? document.body : document.createElement(element);
+
+	if (id != null) UIprototype.id = id;
+
 	const UItext = (text) => {
 		(element == 'input') ? UIprototype.value = text : UIprototype.innerText = text;
 	}
