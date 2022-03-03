@@ -1,7 +1,6 @@
 import { CardElement } from "./CardElement";
 import { InputElement } from "./InputElement";
 import { ItemPriority } from "./ItemPriority";
-import { PriorityRadio } from "./PriorityRadio";
 
 export const itemCard = (item) => {
 	const details = CardElement('details', 'itemCardDetails');

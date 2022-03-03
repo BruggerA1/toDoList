@@ -1,5 +1,4 @@
 import { ui } from "../..";
-import { Sidebar } from "../Sidebar";
 import { CardElement } from "./CardElement";
 import { itemCard } from "./ItemCard";
 
