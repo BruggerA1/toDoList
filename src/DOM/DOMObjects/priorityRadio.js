@@ -1,34 +1,15 @@
 import { CardElement } from "./CardElement";
+import { RadioButton } from "./PriorityButton";
+import { PriorityLabel } from "./PriorityLabel";
 
 export const PriorityRadio = (priorityLevel, itemTitle) => {
 	const itemTitleText = itemTitle.split(' ').join('');
 
-	const priorityContainer = (() => {
-		const priorityContainer = CardElement('div', 'priorityContainer');
+	const priorityContainer = CardElement('div', 'priorityContainer');
 
-		return priorityContainer; 
-	})();
+	const radioButton = RadioButton(priorityLevel, itemTitleText)
 
-	const radioButton = (() => {
-		const radioButton = CardElement('input', 'priorityRadio');
-
-		radioButton.type = 'radio';
-		radioButton.disabled = true;
-
-		radioButton.id = `${itemTitleText}-${priorityLevel}PriorityRadio`;
-		radioButton.name = itemTitleText;
-
-		return radioButton;
-	})();
-
-	const radioLabel = (() => {
-		const radioLabel = CardElement('label', 'priorityLabel', priorityLevel);
-		
-		radioLabel.id = `${itemTitleText}-${priorityLevel}PriorityLabel`;
-		radioLabel.htmlFor = radioButton.id;
-	
-		return radioLabel;
-	})();
+	const radioLabel = PriorityLabel(priorityLevel, itemTitleText);
 
 	priorityContainer.append(radioButton, radioLabel);
 

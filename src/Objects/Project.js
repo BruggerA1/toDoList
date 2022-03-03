@@ -1,4 +1,4 @@
-export const Project = (title) => {
+export const Project = (title = 'Project') => {
 	const project = {title}
 	const itemList = [];
 

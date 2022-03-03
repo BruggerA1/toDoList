@@ -1,7 +1,7 @@
 import { UIelement } from "./DOMObjects/UIelement";
 import { SidebarCategory } from "./DOMObjects/SidebarCategory";
 import { ProjectContainer } from "./DOMObjects/ProjectContainer";
-import { addButton } from "./DOMObjects/addButton";
+import { AddButton } from "./DOMObjects/AddButton";
 
 export const Sidebar = () => {
 	const sidebar = UIelement('nav', 'sidebar');
@@ -9,7 +9,7 @@ export const Sidebar = () => {
 	const today = SidebarCategory('Today');
 	const week = SidebarCategory('Week');
 	const projectContainer = ProjectContainer();
-	const addProjectButton = addButton('project')
+	const addProjectButton = AddButton('project')
 
 	sidebar.append(all, today, week, projectContainer, addProjectButton);
 	
