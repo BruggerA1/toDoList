@@ -1,4 +1,4 @@
-import { UIelement } from "./UIelement";
+import { UIelement } from './UIelement';
 
 export const AddButton = (label) => {
 	const addButton = UIelement('button', `add${label}Button`);
@@ -6,5 +6,5 @@ export const AddButton = (label) => {
 	addButton.addClass('addButton');
 	addButton.UItext(`+ ${label}`);
 
-	return addButton;
+	return Object.assign(addButton, {});
 };

@@ -7,5 +7,5 @@ export const RadioButton = (priorityLevel, itemTitleText) => {
 	radioButton.id = `${itemTitleText}-${priorityLevel}PriorityRadio`;
 	radioButton.name = itemTitleText;
 
-	return radioButton;
-}
+	return Object.assign(radioButton, {});
+};

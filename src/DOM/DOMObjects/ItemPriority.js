@@ -8,11 +8,11 @@ export const ItemPriority = item => {
 	const medPriority = PriorityRadio('medium', item.title);
 	const highPriority = PriorityRadio('high', item.title);
 
-	(item.priority == 'high') ? highPriority.radioButton.checked = true 
+	(item.priority == 'high') ? highPriority.radioButton.checked = true
 		: (item.priority == 'medium') ? medPriority.radioButton.checked = true
 			: lowPriority.radioButton.checked = true;
 
-	itemPriority.append(lowPriority, medPriority , highPriority);
+	itemPriority.append(lowPriority, medPriority, highPriority);
 
-	return Object.assign(itemPriority, {lowPriority, medPriority, highPriority});
+	return Object.assign(itemPriority, { lowPriority, medPriority, highPriority });
 };
