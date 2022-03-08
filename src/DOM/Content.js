@@ -8,6 +8,7 @@ export const Content = () => {
 	const content = UIelement('main', 'content');
 	const addItemButton = AddButton('Item');
 	const currentProject = UIelement('div', 'currentProject');
+	
 	content.append(currentProject);
 
 	const addItem = (item) => {

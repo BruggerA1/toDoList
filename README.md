@@ -1,5 +1,5 @@
 # TO DO
 
-+ Delete item/project functionality
-+ storage
++ Refine item / project delete functionality.
++ Storage
 + CSS

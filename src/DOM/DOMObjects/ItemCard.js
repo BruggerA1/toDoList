@@ -1,3 +1,4 @@
+import { ui } from "../..";
 import { CardElement } from "./CardElement";
 import { InputElement } from "./InputElement";
 import { ItemPriority } from "./ItemPriority";
@@ -55,6 +56,30 @@ export const ItemCard = (item) => {
 	itemEdit.addEventListener('click', () => {
 		toggleEdit();
 		updateItem();
+	});
+
+	itemDelete.addEventListener('click', (e) => {
+		const currentProject = ui.content.currentProject.innerText;
+		const projectList = ui.sidebar.projectContainer.projectList;
+
+		projectList.forEach(project => {
+			if (project.title == currentProject) {
+				const projIndex = projectList.indexOf(project);
+				const itemList = projectList[projIndex].itemList;
+				const currentItemCard = e.target.parentElement.parentElement;
+				const currentItemTitle = e.target.parentElement.parentElement.childNodes[0].childNodes[1].value;
+				itemList.forEach(item => {
+					if (item.title == currentItemTitle) {
+						console.log(`${item.title} match`);
+						const itemIndex = itemList.indexOf(item);
+						console.log(itemIndex);
+						itemList.splice(itemIndex, 1);
+					}
+				});
+				currentItemCard.remove();
+				ui.sidebar.projectContainer.update();
+			};
+		})
 	});
 
 	summary.append(itemCheckBox, itemTitle, itemDate);

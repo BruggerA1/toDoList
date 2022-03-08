@@ -10,6 +10,11 @@ export const ProjectCard = (project) => {
 	const deleteProject = InputElement('button', 'false', 'deleteProject', 'X');
 
 	deleteProject.addEventListener('click', e => {
+		ui.sidebar.projectContainer.projectList.forEach(project => {
+			if (project.title == e.target.parentElement.childNodes[1].value) {
+				ui.sidebar.projectContainer.projectList.splice(ui.sidebar.projectContainer.projectList.indexOf(project),1);
+			}
+		})
 		e.target.parentElement.remove();
 	});
 
