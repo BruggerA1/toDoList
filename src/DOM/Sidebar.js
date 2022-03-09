@@ -11,14 +11,21 @@ export const Sidebar = () => {
 	const week = SidebarCategory('Week');
 	const projectContainer = ProjectContainer();
 	const addProjectButton = AddButton('project');
+	let projectCount = 1;
 
-	sidebar.append(all, today, week, projectContainer, addProjectButton);
+	const addProject = () => {
+		const newProj = Project(`Untitled Project ${projectCount}`);
+
+		projectContainer.addProject(newProj);
+	
+		projectCount++
+	};
 
 	addProjectButton.addEventListener('click', () => {
-		const newProj = Project(`Project ${projectContainer.projectList.length + 1}`);
-		projectContainer.addProject(newProj);
+		addProject();
 	});
 
+	sidebar.append(all, today, week, projectContainer, addProjectButton);
 
 	return Object.assign(sidebar, { projectContainer, addProjectButton });
 };

@@ -1,8 +1,6 @@
 export const UIelement = (element, id = null) => {
 	const UIprototype = (element == 'body') ? document.body : document.createElement(element);
 
-	if (id != null) UIprototype.id = id;
-
 	const UItext = (text) => {
 		(element == 'input') ? UIprototype.value = text : UIprototype.innerText = text;
 	};
@@ -18,6 +16,8 @@ export const UIelement = (element, id = null) => {
 			UIprototype.classList.remove(item);
 		});
 	};
+
+	if (id != null) UIprototype.id = id;
 
 	return Object.assign(UIprototype, { UItext, addClass, removeClass });
 };

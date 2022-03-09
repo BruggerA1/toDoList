@@ -1,3 +1,4 @@
+import { ui } from "../..";
 import { CardElement } from "./CardElement";
 import { InputElement } from "./InputElement";
 import { ItemPriority } from "./ItemPriority";
@@ -42,6 +43,24 @@ export const ItemCard = (item) => {
 		};
 	};
 
+	const deleteItem = () => {
+		const currentProject = ui.content.currentProject;
+		const projects = ui.sidebar.projectContainer;
+
+		projects.projectList.forEach((project, index, array) => {
+			if (project.title == currentProject.innerText) {
+				const itemList = array[index].itemList;
+				
+				itemList.forEach((item, index) => {
+					if (item.title == itemTitle.value) itemList.splice(index, 1)
+				});
+
+				details.remove();
+				projects.update();
+			};
+		});
+	};
+
 	const updateItem = () => {
 		item.title = itemTitle.value;
 		item.dueDate = itemDate.value;
@@ -55,6 +74,10 @@ export const ItemCard = (item) => {
 	itemEdit.addEventListener('click', () => {
 		toggleEdit();
 		updateItem();
+	});
+
+	itemDelete.addEventListener('click', () => {
+		deleteItem();
 	});
 
 	summary.append(itemCheckBox, itemTitle, itemDate);

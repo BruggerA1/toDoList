@@ -8,10 +8,23 @@ export const Content = () => {
 	const content = UIelement('main', 'content');
 	const addItemButton = AddButton('Item');
 	const currentProject = UIelement('div', 'currentProject');
-	content.append(currentProject);
+	let itemCount = 1;
 
-	const addItem = (item) => {
-		content.append(item);
+	const addItem = () => {
+		const projects = ui.sidebar.projectContainer;
+
+		projects.projectList.forEach(project => {
+			if (project.title == currentProject.innerText) {
+				const newItem = Item(`item ${itemCount}`);
+
+				content.append(ItemCard(newItem));
+				project.addItem(newItem);
+
+				itemCount++;
+			};
+		});
+
+		projects.update();
 	};
 
 	const reload = () => {
@@ -20,17 +33,10 @@ export const Content = () => {
 	};
 
 	addItemButton.addEventListener('click', () => {
-		ui.sidebar.projectContainer.projectList.forEach(project => {
-			if (project.title == currentProject.innerText) {
-				const newItem = Item(`item ${project.itemList.length + 1}`);
-				addItem(ItemCard(newItem));
-
-				project.addItem(newItem);
-			};
-		});
-		ui.sidebar.projectContainer.update();
+		addItem();
 	});
 
+	content.append(currentProject);
 
 	return Object.assign(content, { addItemButton, currentProject, addItem, reload });
 };
