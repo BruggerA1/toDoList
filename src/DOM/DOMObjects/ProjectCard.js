@@ -7,30 +7,45 @@ export const ProjectCard = (project) => {
 	const projectCard = CardElement('div', 'projectCard');
 	const cardText = CardElement('input', 'projectCardText', project.title);
 	const cardLabel = CardElement('span', 'projectCardLabel', project.itemList.length);
-	const deleteProject = InputElement('button', 'false', 'deleteProject', 'X');
+	const deleteProjectButton = InputElement('button', 'false', 'deleteProject', 'X');
 
-	deleteProject.addEventListener('click', e => {
-		ui.sidebar.projectContainer.projectList.forEach(project => {
-			if (project.title == e.target.parentElement.childNodes[1].value) {
-				ui.sidebar.projectContainer.projectList.splice(ui.sidebar.projectContainer.projectList.indexOf(project),1);
-			}
-		})
-		e.target.parentElement.remove();
+	const updateTitle = () => {
+		project.title = cardText.value;
+	};
+
+	const loadProject = () => {
+		const content = ui.content;
+
+		content.reload();
+
+		content.currentProject.UItext(cardText.value);
+
+		project.itemList.forEach(item => content.addItem(ItemCard(item)));
+	};
+
+	const deleteProject = () => {
+		const projects = ui.sidebar.projectContainer.projectList;
+
+		projects.forEach((project, index, array) => {
+			if (project.title == cardText.value) array.splice(index,1);
+		});
+
+		projectCard.remove();
+	};
+
+	deleteProjectButton.addEventListener('click', () => {
+		deleteProject();
 	});
 
 	cardText.addEventListener('change', () => {
-		project.title = cardText.value;
+		updateTitle();
 	});
 
 	projectCard.addEventListener('click', () => {
-		ui.content.reload();
-		ui.content.currentProject.UItext(cardText.value);
-		project.itemList.forEach(item => {
-			ui.content.addItem(ItemCard(item));
-		});
+		loadProject();
 	});
 
-	projectCard.append(deleteProject, cardText, cardLabel);
+	projectCard.append(deleteProjectButton, cardText, cardLabel);
 
 	return Object.assign(projectCard, {});
 };

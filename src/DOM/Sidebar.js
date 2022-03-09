@@ -12,13 +12,20 @@ export const Sidebar = () => {
 	const projectContainer = ProjectContainer();
 	const addProjectButton = AddButton('project');
 	let projectCount = 1;
-	sidebar.append(all, today, week, projectContainer, addProjectButton);
+
+	const addProject = () => {
+		const newProj = Project(`Untitled Project ${projectCount}`);
+
+		projectContainer.addProject(newProj);
+	
+		projectCount++
+	};
 
 	addProjectButton.addEventListener('click', () => {
-		const newProj = Project(`Untitled Project ${projectCount}`);
-		projectCount++
-		projectContainer.addProject(newProj);
+		addProject();
 	});
+
+	sidebar.append(all, today, week, projectContainer, addProjectButton);
 
 	return Object.assign(sidebar, { projectContainer, addProjectButton });
 };

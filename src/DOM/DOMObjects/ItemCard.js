@@ -43,6 +43,24 @@ export const ItemCard = (item) => {
 		};
 	};
 
+	const deleteItem = () => {
+		const currentProject = ui.content.currentProject;
+		const projects = ui.sidebar.projectContainer;
+
+		projects.projectList.forEach((project, index, array) => {
+			if (project.title == currentProject.innerText) {
+				const itemList = array[index].itemList;
+				
+				itemList.forEach((item, index) => {
+					if (item.title == itemTitle.value) itemList.splice(index, 1)
+				});
+
+				details.remove();
+				projects.update();
+			};
+		});
+	};
+
 	const updateItem = () => {
 		item.title = itemTitle.value;
 		item.dueDate = itemDate.value;
@@ -58,28 +76,8 @@ export const ItemCard = (item) => {
 		updateItem();
 	});
 
-	itemDelete.addEventListener('click', (e) => {
-		const currentProject = ui.content.currentProject.innerText;
-		const projectList = ui.sidebar.projectContainer.projectList;
-
-		projectList.forEach(project => {
-			if (project.title == currentProject) {
-				const projIndex = projectList.indexOf(project);
-				const itemList = projectList[projIndex].itemList;
-				const currentItemCard = e.target.parentElement.parentElement;
-				const currentItemTitle = e.target.parentElement.parentElement.childNodes[0].childNodes[1].value;
-				itemList.forEach(item => {
-					if (item.title == currentItemTitle) {
-						console.log(`${item.title} match`);
-						const itemIndex = itemList.indexOf(item);
-						console.log(itemIndex);
-						itemList.splice(itemIndex, 1);
-					}
-				});
-				currentItemCard.remove();
-				ui.sidebar.projectContainer.update();
-			};
-		})
+	itemDelete.addEventListener('click', () => {
+		deleteItem();
 	});
 
 	summary.append(itemCheckBox, itemTitle, itemDate);
