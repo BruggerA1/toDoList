@@ -12,14 +12,10 @@ export const Content = () => {
 
 	const addItem = () => {
 		const projects = ui.sidebar.projectContainer;
-
 		projects.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
-				const newItem = Item(`item ${itemCount}`);
-
-				content.append(ItemCard(newItem));
-				project.addItem(newItem);
-
+				content.append(ItemCard(Item(`item ${itemCount}`)));
+				project.addItem(Item(`item ${itemCount}`));
 				itemCount++;
 			};
 		});

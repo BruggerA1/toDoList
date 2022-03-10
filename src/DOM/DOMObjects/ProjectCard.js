@@ -20,7 +20,7 @@ export const ProjectCard = (project) => {
 
 		content.currentProject.UItext(cardText.value);
 
-		project.itemList.forEach(item => content.addItem(ItemCard(item)));
+		project.itemList.forEach(item => content.append(ItemCard(item)));
 	};
 
 	const deleteProject = () => {

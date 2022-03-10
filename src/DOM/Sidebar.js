@@ -14,9 +14,8 @@ export const Sidebar = () => {
 	let projectCount = 1;
 
 	const addProject = () => {
-		const newProj = Project(`Untitled Project ${projectCount}`);
 
-		projectContainer.addProject(newProj);
+		projectContainer.addProject(Project(`Untitled Project ${projectCount}`));
 	
 		projectCount++
 	};

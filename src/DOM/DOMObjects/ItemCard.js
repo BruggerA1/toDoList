@@ -64,9 +64,9 @@ export const ItemCard = (item) => {
 	const updateItem = () => {
 		item.title = itemTitle.value;
 		item.dueDate = itemDate.value;
-		item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'high'
-			: (itemPriority.medPriority.radioButton.checked == true) ? 'medium'
-				: 'low';
+		item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'High'
+			: (itemPriority.medPriority.radioButton.checked == true) ? 'Medium'
+				: 'Low';
 		item.description = itemDescription.value;
 		item.notes = itemNotes.value;
 	};
