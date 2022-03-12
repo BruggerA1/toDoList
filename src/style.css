@@ -115,3 +115,9 @@ header {
 .itemDelete {
 	grid-area: delete;
 }
+
+.sidebarCategory {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+	text-align: center;
+}
