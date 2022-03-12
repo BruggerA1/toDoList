@@ -14,8 +14,9 @@ export const Content = () => {
 		const projects = ui.sidebar.projectContainer;
 		projects.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
-				content.append(ItemCard(Item(`item ${itemCount}`)));
-				project.addItem(Item(`item ${itemCount}`));
+				const item = Item(`item ${itemCount}`)
+				content.append(ItemCard(item));
+				project.addItem(item);
 				itemCount++;
 			};
 		});
