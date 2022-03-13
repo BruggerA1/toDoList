@@ -74,6 +74,7 @@ export const ItemCard = (item) => {
 	itemEdit.addEventListener('click', () => {
 		toggleEdit();
 		updateItem();
+		console.log(item.dueDate)
 	});
 
 	itemDelete.addEventListener('click', () => {

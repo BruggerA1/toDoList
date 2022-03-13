@@ -14,14 +14,17 @@ export const Content = () => {
 		const projects = ui.sidebar.projectContainer;
 		projects.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
-				const item = Item(`item ${itemCount}`)
-				content.append(ItemCard(item));
-				project.addItem(item);
+				const newItem = Item(`item ${itemCount}`)
+				content.append(ItemCard(newItem));
+				project.addItem(newItem);
 				itemCount++;
 			};
 		});
-
 		projects.update();
+
+		const allCategory = ui.sidebar.all;
+		allCategory.cardLabel.UItext(projects.projectList.getItems().length);
+		console.log(projects.projectList.getCurrentDate());
 	};
 
 	const reload = () => {

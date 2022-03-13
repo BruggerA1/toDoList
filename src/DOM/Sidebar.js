@@ -26,5 +26,5 @@ export const Sidebar = () => {
 
 	sidebar.append(all, today, week, projectContainer, addProjectButton);
 
-	return Object.assign(sidebar, { projectContainer, addProjectButton });
+	return Object.assign(sidebar, { projectContainer, all, addProjectButton });
 };

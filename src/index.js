@@ -10,8 +10,7 @@ export const ui = UI();
 // const item1 = Item();
 // const item2 = Item();
 
-// testProj.addItem(item1, item2)
-
+// testProj.addItem(item1, item2 )
 
 // ui.sidebar.projectContainer.addProject(testProj);
 
@@ -20,3 +19,4 @@ export const ui = UI();
 // content.currentProject.UItext(testProj.title);
 
 // testProj.itemList.forEach(item => content.append(ItemCard(item)));
+

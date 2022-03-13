@@ -40,7 +40,7 @@ header {
 
 .itemCardSummary {
 	display: grid;
-	grid-template-columns: 1fr 6fr 14vw;
+	grid-template-columns: 1fr 6fr 13vw;
 	height: 6vh;
 	padding: 0 2vw;
 	align-items: center;
