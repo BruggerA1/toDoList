@@ -3,6 +3,7 @@ import { UIelement } from "./DOMObjects/UIelement";
 import { Item } from "../Objects/Item";
 import { ItemCard } from "./DOMObjects/ItemCard";
 import { ui } from "..";
+import { format, subDays } from "date-fns";
 
 export const Content = () => {
 	const content = UIelement('main', 'content');
@@ -24,7 +25,11 @@ export const Content = () => {
 
 		const allCategory = ui.sidebar.all;
 		allCategory.cardLabel.UItext(projects.projectList.getItems().length);
-		console.log(projects.projectList.getCurrentDate());
+		const dateToday = new Date();
+		const dateLastWeek = subDays(dateToday, 7);
+		console.log(dateToday);
+		console.log(format(dateLastWeek, 'MM-dd-yyyy'));
+		
 	};
 
 	const reload = () => {

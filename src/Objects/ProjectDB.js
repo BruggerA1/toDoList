@@ -17,8 +17,9 @@ export const ProjectDB = () => {
 		const year = currentDate.getFullYear();
 		const month = currentDate.getMonth() + 1;
 		const day = currentDate.getDate();
-
-		return `${year}-${month}-${day}`;
+		const date = new Date();
+		// return `${year}-${month}-${day}`;
+		return date;
 	}
 
 	return Object.assign(projectDB, {getItems, getCurrentDate});
