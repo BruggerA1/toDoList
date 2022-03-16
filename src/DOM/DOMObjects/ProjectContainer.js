@@ -1,6 +1,7 @@
 import { ProjectDB } from '../../Objects/projectDB';
 import { ProjectCard } from './projectCard';
 import { UIelement } from './UIelement';
+import { ui } from '../..';
 
 export const ProjectContainer = () => {
 	const details = UIelement('details', 'projects');
@@ -16,6 +17,7 @@ export const ProjectContainer = () => {
 	const update = () => {
 		details.UItext('');
 		projectList.forEach(project => details.append(ProjectCard(project)));
+
 	};
 
 	details.open = true;

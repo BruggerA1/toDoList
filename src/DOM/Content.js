@@ -22,9 +22,14 @@ export const Content = () => {
 		});
 		projects.update();
 
+		//testing
 		const allCategory = ui.sidebar.all;
 		allCategory.cardLabel.UItext(projects.projectList.getItems().length);
-		console.log(projects.projectList.getCurrentDate());
+		const todayCategory = ui.sidebar.today;
+		todayCategory.cardLabel.UItext(projects.projectList.getTodayItems().length);
+		const weekCategory = ui.sidebar.week;
+		weekCategory.cardLabel.UItext(projects.projectList.getWeekItems().length)
+
 	};
 
 	const reload = () => {

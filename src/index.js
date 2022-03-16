@@ -7,10 +7,11 @@ import { Project } from './Objects/Project';
 export const ui = UI();
 
 // const testProj = Project('project')
-// const item1 = Item();
-// const item2 = Item();
+// const item1 = Item('itemOne', 'description', '1993-02-04','Medium', 'notes');
+// const item2 = Item('itemTwo', 'description', '2022-03-16','Medium', 'notes');
+// const item3 = Item('itemThree', 'description', '2022-03-17','Medium', 'notes');
 
-// testProj.addItem(item1, item2 )
+// testProj.addItem(item1, item2, item3 )
 
 // ui.sidebar.projectContainer.addProject(testProj);
 

@@ -17,7 +17,12 @@ export const Sidebar = () => {
 
 		projectContainer.addProject(Project(`Untitled Project ${projectCount}`));
 	
-		projectCount++
+		projectCount++;
+
+		//testing
+		all.cardLabel.UItext(projectContainer.projectList.getItems().length);
+		week.cardLabel.UItext(projectContainer.projectList.getWeekItems().length)
+
 	};
 
 	addProjectButton.addEventListener('click', () => {
@@ -26,5 +31,5 @@ export const Sidebar = () => {
 
 	sidebar.append(all, today, week, projectContainer, addProjectButton);
 
-	return Object.assign(sidebar, { projectContainer, all, addProjectButton });
+	return Object.assign(sidebar, { projectContainer, all, today, week, addProjectButton });
 };
