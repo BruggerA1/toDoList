@@ -59,6 +59,10 @@ export const ItemCard = (item) => {
 				projects.update();
 			};
 		});
+
+		ui.sidebar.all.updateLabel();
+		ui.sidebar.today.updateLabel();
+		ui.sidebar.week.updateLabel();
 	};
 
 	const updateItem = () => {
@@ -69,11 +73,10 @@ export const ItemCard = (item) => {
 				: 'Low';
 		item.description = itemDescription.value;
 		item.notes = itemNotes.value;
-
-		//testing
-		ui.sidebar.all.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getItems().length);
-		ui.sidebar.today.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getTodayItems().length);
-		ui.sidebar.week.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getWeekItems().length)
+		
+		ui.sidebar.all.updateLabel();
+		ui.sidebar.today.updateLabel();
+		ui.sidebar.week.updateLabel();
 	};
 
 	itemEdit.addEventListener('click', () => {
