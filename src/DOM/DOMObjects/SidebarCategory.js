@@ -1,10 +1,20 @@
-import { UIelement } from "./UIelement";
+import { CardElement } from "./CardElement";
+import { ui } from "../..";
 
 export const SidebarCategory = (categoryText) => {
-	const sidebarCategory = UIelement('div');
+	const sidebarCategory = CardElement('div', 'sidebarCategory');
+	const cardText = CardElement('span', 'categoryCardText', categoryText);
+	const cardLabel = CardElement('span', 'categoryCardLabel', '0');
 
-	sidebarCategory.UItext(categoryText);
-	sidebarCategory.addClass('sidebarCategory');
+	const updateLabel = () => {
+		const projectList = ui.sidebar.projectContainer.projectList;
+		(categoryText == 'All') ? cardLabel.UItext(projectList.getItems().length)
+			: (categoryText == 'Today') ? cardLabel.UItext(projectList.getTodayItems().length)
+				: cardLabel.UItext(projectList.getWeekItems().length);
+	}
 
-	return sidebarCategory;
+
+	sidebarCategory.append(cardText, cardLabel);
+
+	return Object.assign(sidebarCategory, {cardLabel, updateLabel});
 };

@@ -59,16 +59,24 @@ export const ItemCard = (item) => {
 				projects.update();
 			};
 		});
+
+		ui.sidebar.all.updateLabel();
+		ui.sidebar.today.updateLabel();
+		ui.sidebar.week.updateLabel();
 	};
 
 	const updateItem = () => {
 		item.title = itemTitle.value;
 		item.dueDate = itemDate.value;
-		item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'high'
-			: (itemPriority.medPriority.radioButton.checked == true) ? 'medium'
-				: 'low';
+		item.priority = (itemPriority.highPriority.radioButton.checked == true) ? 'High'
+			: (itemPriority.medPriority.radioButton.checked == true) ? 'Medium'
+				: 'Low';
 		item.description = itemDescription.value;
 		item.notes = itemNotes.value;
+		
+		ui.sidebar.all.updateLabel();
+		ui.sidebar.today.updateLabel();
+		ui.sidebar.week.updateLabel();
 	};
 
 	itemEdit.addEventListener('click', () => {

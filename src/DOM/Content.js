@@ -11,20 +11,19 @@ export const Content = () => {
 	let itemCount = 1;
 
 	const addItem = () => {
-		const projects = ui.sidebar.projectContainer;
-
-		projects.projectList.forEach(project => {
+		ui.sidebar.projectContainer.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
-				const newItem = Item(`item ${itemCount}`);
-
+				const newItem = Item(`item ${itemCount}`)
 				content.append(ItemCard(newItem));
 				project.addItem(newItem);
-
 				itemCount++;
 			};
 		});
+		ui.sidebar.projectContainer.update();
+		ui.sidebar.all.updateLabel();
+		ui.sidebar.today.updateLabel();
+		ui.sidebar.week.updateLabel();
 
-		projects.update();
 	};
 
 	const reload = () => {

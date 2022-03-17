@@ -4,12 +4,12 @@ import { PriorityRadio } from "./PriorityRadio";
 export const ItemPriority = item => {
 	const itemPriority = CardElement('div', 'itemPriority');
 
-	const lowPriority = PriorityRadio('low', item.title);
-	const medPriority = PriorityRadio('medium', item.title);
-	const highPriority = PriorityRadio('high', item.title);
+	const lowPriority = PriorityRadio('Low', item.title);
+	const medPriority = PriorityRadio('Medium', item.title);
+	const highPriority = PriorityRadio('High', item.title);
 
-	(item.priority == 'high') ? highPriority.radioButton.checked = true
-		: (item.priority == 'medium') ? medPriority.radioButton.checked = true
+	(item.priority == 'High') ? highPriority.radioButton.checked = true
+		: (item.priority == 'Medium') ? medPriority.radioButton.checked = true
 			: lowPriority.radioButton.checked = true;
 
 	itemPriority.append(lowPriority, medPriority, highPriority);
