@@ -1,3 +1,5 @@
+import { isThisWeek, isToday, parseISO } from "date-fns";
+
 export const ProjectDB = () => {
 	const projectDB = [];
 	const currentDate = new Date();
@@ -13,6 +15,29 @@ export const ProjectDB = () => {
 		return allItems;
 	};
 
+	const getWeekItems = () => {
+		const weekItems = [];
+		getItems().forEach(item => {
+			if (isThisWeek(parseISO(item.dueDate)) == true) {
+				weekItems.push(item);
+			};
+		});
+
+		return weekItems;
+	}
+
+	const getTodayItems = () => {
+		const todayItems = [];
+		getItems().forEach(item => {
+			if (isToday(parseISO(item.dueDate)) == true) {
+				todayItems.push(item);
+			};
+		});
+
+		return todayItems;
+	}
+
+
 	const getCurrentDate = () => {
 		const year = currentDate.getFullYear();
 		const month = currentDate.getMonth() + 1;
@@ -22,5 +47,5 @@ export const ProjectDB = () => {
 		return date;
 	}
 
-	return Object.assign(projectDB, {getItems, getCurrentDate});
+	return Object.assign(projectDB, {getItems, getCurrentDate, getTodayItems, getWeekItems});
 };

@@ -69,12 +69,16 @@ export const ItemCard = (item) => {
 				: 'Low';
 		item.description = itemDescription.value;
 		item.notes = itemNotes.value;
+
+		//testing
+		ui.sidebar.all.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getItems().length);
+		ui.sidebar.today.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getTodayItems().length);
+		ui.sidebar.week.cardLabel.UItext(ui.sidebar.projectContainer.projectList.getWeekItems().length)
 	};
 
 	itemEdit.addEventListener('click', () => {
 		toggleEdit();
 		updateItem();
-		console.log(item.dueDate)
 	});
 
 	itemDelete.addEventListener('click', () => {
