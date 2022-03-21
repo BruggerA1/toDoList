@@ -19,6 +19,10 @@ export const ItemCard = (item) => {
 
 	let editMode = false;
 
+	const sidebar = ui.sidebar;
+	const currentProject = ui.content.currentProject;
+	const projects = ui.sidebar.projectContainer;
+
 	const toggleEdit = () => {
 		editMode = !editMode;
 
@@ -44,9 +48,6 @@ export const ItemCard = (item) => {
 	};
 
 	const deleteItem = () => {
-		const currentProject = ui.content.currentProject;
-		const projects = ui.sidebar.projectContainer;
-
 		projects.projectList.forEach((project, index, array) => {
 			if (project.title == currentProject.innerText) {
 				const itemList = array[index].itemList;
@@ -60,9 +61,7 @@ export const ItemCard = (item) => {
 			};
 		});
 
-		ui.sidebar.all.updateLabel();
-		ui.sidebar.today.updateLabel();
-		ui.sidebar.week.updateLabel();
+		sidebar.updateCategories();
 	};
 
 	const updateItem = () => {
@@ -74,9 +73,7 @@ export const ItemCard = (item) => {
 		item.description = itemDescription.value;
 		item.notes = itemNotes.value;
 		
-		ui.sidebar.all.updateLabel();
-		ui.sidebar.today.updateLabel();
-		ui.sidebar.week.updateLabel();
+		sidebar.updateCategories();
 	};
 
 	itemEdit.addEventListener('click', () => {

@@ -11,5 +11,5 @@ export const UI = () => {
 
 	UI.append(header, sidebar, content);
 
-	return Object.assign(UI, { sidebar, content });
+	return Object.assign(UI, { sidebar, content, });
 };
