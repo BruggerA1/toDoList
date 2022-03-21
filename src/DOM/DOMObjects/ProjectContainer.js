@@ -20,6 +20,7 @@ export const ProjectContainer = () => {
 	};
 
 	details.open = true;
+	
 	summary.UItext('Projects');
 
 	details.append(summary);

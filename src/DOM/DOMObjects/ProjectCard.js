@@ -8,14 +8,15 @@ export const ProjectCard = (project) => {
 	const cardText = CardElement('input', 'projectCardText', project.title);
 	const cardLabel = CardElement('span', 'projectCardLabel', project.itemList.length);
 	const deleteProjectButton = InputElement('button', 'false', 'deleteProject', 'X');
+	const sidebar = ui.sidebar;
+	const content = ui.content;
+	const projects = ui.sidebar.projectContainer.projectList;
 
 	const updateTitle = () => {
 		project.title = cardText.value;
 	};
 
 	const loadProject = () => {
-		const content = ui.content;
-
 		content.reload();
 
 		content.currentProject.UItext(cardText.value);
@@ -24,13 +25,15 @@ export const ProjectCard = (project) => {
 	};
 
 	const deleteProject = () => {
-		const projects = ui.sidebar.projectContainer.projectList;
-
-		projects.forEach((project, index, array) => {
+		projects.forEach((project, index, array) => { 
 			if (project.title == cardText.value) array.splice(index,1);
 		});
 
 		projectCard.remove();
+
+		sidebar.updateCategories();
+
+		if(content.currentProject.innerText == cardText.value) content.UItext('');
 	};
 
 	deleteProjectButton.addEventListener('click', () => {
@@ -39,9 +42,10 @@ export const ProjectCard = (project) => {
 
 	cardText.addEventListener('change', () => {
 		updateTitle();
+		loadProject();
 	});
 
-	projectCard.addEventListener('click', () => {
+	cardLabel.addEventListener('click', () => {
 		loadProject();
 	});
 

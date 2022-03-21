@@ -2,7 +2,6 @@ import { isThisWeek, isToday, parseISO } from "date-fns";
 
 export const ProjectDB = () => {
 	const projectDB = [];
-	const currentDate = new Date();
 
 	const getItems = () => {
 		const allItems = [];
@@ -37,15 +36,5 @@ export const ProjectDB = () => {
 		return todayItems;
 	}
 
-
-	const getCurrentDate = () => {
-		const year = currentDate.getFullYear();
-		const month = currentDate.getMonth() + 1;
-		const day = currentDate.getDate();
-		const date = new Date();
-		// return `${year}-${month}-${day}`;
-		return date;
-	}
-
-	return Object.assign(projectDB, {getItems, getCurrentDate, getTodayItems, getWeekItems});
+	return Object.assign(projectDB, {getItems, getTodayItems, getWeekItems});
 };

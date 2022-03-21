@@ -3,6 +3,7 @@ import { SidebarCategory } from "./DOMObjects/SidebarCategory";
 import { ProjectContainer } from "./DOMObjects/ProjectContainer";
 import { AddButton } from "./DOMObjects/AddButton";
 import { Project } from "../Objects/Project";
+import { ui } from "..";
 
 export const Sidebar = () => {
 	const sidebar = UIelement('nav', 'sidebar');
@@ -19,10 +20,13 @@ export const Sidebar = () => {
 	
 		projectCount++;
 
-		//testing
-		all.cardLabel.UItext(projectContainer.projectList.getItems().length);
-		week.cardLabel.UItext(projectContainer.projectList.getWeekItems().length)
+		ui.sidebar.updateCategories();
+	};
 
+	const updateCategories = () => {
+		sidebar.all.updateLabel();
+		sidebar.today.updateLabel();
+		sidebar.week.updateLabel();
 	};
 
 	addProjectButton.addEventListener('click', () => {
@@ -31,5 +35,5 @@ export const Sidebar = () => {
 
 	sidebar.append(all, today, week, projectContainer, addProjectButton);
 
-	return Object.assign(sidebar, { projectContainer, all, today, week, addProjectButton });
+	return Object.assign(sidebar, { projectContainer, all, today, week, addProjectButton, updateCategories });
 };

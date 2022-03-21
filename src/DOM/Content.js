@@ -11,7 +11,10 @@ export const Content = () => {
 	let itemCount = 1;
 
 	const addItem = () => {
-		ui.sidebar.projectContainer.projectList.forEach(project => {
+		const projects = ui.sidebar.projectContainer;
+		const sidebar = ui.sidebar;
+
+		projects.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
 				const newItem = Item(`item ${itemCount}`)
 				content.append(ItemCard(newItem));
@@ -19,11 +22,8 @@ export const Content = () => {
 				itemCount++;
 			};
 		});
-		ui.sidebar.projectContainer.update();
-		ui.sidebar.all.updateLabel();
-		ui.sidebar.today.updateLabel();
-		ui.sidebar.week.updateLabel();
-
+		projects.update();
+		sidebar.updateCategories();
 	};
 
 	const reload = () => {
@@ -37,5 +37,5 @@ export const Content = () => {
 
 	content.append(currentProject);
 
-	return Object.assign(content, { addItemButton, currentProject, addItem, reload });
+	return Object.assign(content, { addItemButton, currentProject, addItem, reload, });
 };

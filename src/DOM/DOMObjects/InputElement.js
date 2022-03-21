@@ -4,6 +4,7 @@ export const InputElement = (type = 'text', readOnly = 'false', className = null
 	const inputElement = CardElement('input', className, text);
 
 	inputElement.type = type;
+	
 	inputElement.readOnly = readOnly;
 
 	return Object.assign(inputElement, {});
