@@ -11,7 +11,7 @@ export const Sidebar = () => {
 	const today = SidebarCategory('Today');
 	const week = SidebarCategory('Week');
 	const projectContainer = ProjectContainer();
-	const addProjectButton = AddButton('project');
+	const addProjectButton = AddButton('Project');
 	let projectCount = 1;
 
 	const addProject = () => {

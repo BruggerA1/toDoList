@@ -15,6 +15,7 @@ export const ProjectContainer = () => {
 
 	const update = () => {
 		details.UItext('');
+		details.append(summary);
 		projectList.forEach(project => details.append(ProjectCard(project)));
 
 	};
