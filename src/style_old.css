@@ -4,11 +4,12 @@
 	margin: 0;
 	padding: 0;
 	
+	color: rgba(255,255,255,0.7);
+	/* border: dashed 1px; */
 }
 
 body {
 	height: 100vh;
-
 	display: grid;
 	grid-template-columns: 25vw 1fr;
 	grid-template-rows: 10vh 1fr;
@@ -16,39 +17,34 @@ body {
 		"header header"
 		"sidebar content"
 	;
-
 	background-color: #212121;
+
 }
 
 header {
 	grid-area: header;
-
-	border-bottom: solid 1px rgba(255,255,255,0.7);
+	border-bottom: solid 1px;
 }
+
 
 main {
 	grid-area: content;
 }
-
+/* SIDEBAR */
 nav {
 	grid-area: sidebar;
-
-	border-right: solid 1px rgba(255,255,255,0.7);
+	border-right: solid 1px;
 }
 
-/* Sidebar */
 .sidebarCategory {
-	height: 6vh;
-
 	display: grid;
 	grid-template-columns: 7fr 3fr;
-	align-items: center;
 	text-align: center;
-
-	border-bottom: solid 1px rgba(255,255,255,0.7);
-	color: rgba(255,255,255,0.7);
-
+	border-bottom: solid 1px;
+	height: 6vh;
+	align-items: center;
 	font-size: 16pt;
+
 }
 
 .sidebarCategory:hover,
@@ -59,54 +55,21 @@ nav {
 
 
 #projects {
-	max-height: 58vh;
-
+	border-bottom: solid 1px;
 	display: flex;
-
+	max-height: 58vh;
 	overflow: scroll;
 	overflow-x: hidden;
-
-	border-bottom: solid 1px rgba(255,255,255,0.7);
-
 }
-
-
 
 #projects::-webkit-scrollbar{
 	display: none;
 }
 
 #projectList {
-	color: rgba(255,255,255,0.7);
 	font-size: 18pt;
-
+	margin: 1vh 0 1vh 1vw;
 	user-select: none;
-	list-style: none;
-	cursor: pointer;
-
-	display: flex;
-	align-items: center;
-
-}
-
-
-#projects[open] > #projectList::before {
-	content: url('./Assets/chevron_down.svg');
-	transform: scale(0.8);
-}
-
-
-#projects > #projectList::before {
-	content: url('./Assets/chevron_right.svg');
-	transform: scale(0.8);
-}
-
-#projectList::before {
-	/* content: '';
-	position: absolute;
-	height: 1vh;
-	width: 1vh;
-	background-color: red; */
 }
 
 .projectCard {
@@ -171,6 +134,7 @@ nav {
 	bottom: 0;
 	left: 0;
 
+	padding: 1vh 1vw;
 	margin: 2vh 2vw;
 	text-align: center;
 	font-size: 18pt;
@@ -180,20 +144,10 @@ nav {
 	border: none;
 	border-radius: 4px;
 	transition: height 250ms;
-	width: 14vw;
-	height: 6vh;
+	width: 10vw;
+	height: 5vh;
 	overflow: hidden;
 	cursor: pointer;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-#addProjectButton::before {
-	content: url('./Assets/add_circle.svg');
-	transform: scale(0.65);
-	margin: -1vh -0.5vw;
 }
 
 .itemCardSummary {
@@ -358,8 +312,10 @@ nav {
 }
 
 #addItemButton {
+	margin: 1vh 1vw;
+	padding: 1vh 1vw;
 	text-align: center;
-	font-size: 14pt;
+	font-size: 12pt;
 	background-color: #424242;
 	filter: drop-shadow(0px 2px 2px #000000);
 	color: rgba(255,255,255,0.8);
@@ -370,18 +326,7 @@ nav {
 	cursor: pointer;
 
 	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 4vh;
-	margin: 1vh 1vw;
-	width: 8vw;
-}
 
-#addItemButton::before {
-	content: url('./Assets/add_circle.svg');
-	transform: scale(0.5);
-	margin: -1vh -1vw;
 }
 
 #currentProject {
@@ -389,9 +334,4 @@ nav {
 	text-align: center;
 	font-size: 24pt;
 	padding: 1vh 1vw;
-	height: 6vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: solid 1px rgba(255,255,255,0.7);
 }
