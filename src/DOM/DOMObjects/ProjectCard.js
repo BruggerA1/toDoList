@@ -7,7 +7,7 @@ export const ProjectCard = (project) => {
 	const projectCard = CardElement('div', 'projectCard');
 	const cardText = CardElement('input', 'projectCardText', project.title);
 	const cardLabel = CardElement('span', 'projectCardLabel', project.itemList.length);
-	const deleteProjectButton = InputElement('button', 'false', 'deleteProject', 'X');
+	const deleteProjectButton = InputElement('button', 'false', 'deleteProject', '');
 	const sidebar = ui.sidebar;
 	const content = ui.content;
 	const projects = ui.sidebar.projectContainer.projectList;
