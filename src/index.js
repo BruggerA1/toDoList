@@ -6,6 +6,8 @@ import { Project } from './Objects/Project';
 
 export const ui = UI();
 
+
+// Testing
 const testProj = Project();
 const item1 = Item('itemOne', 'description', '1993-02-04','Medium', 'notes');
 const item2 = Item('itemTwo', 'description', '2022-03-16','Medium', 'notes');
@@ -20,4 +22,3 @@ content.reload()
 content.currentProject.UItext(testProj.title);
 
 testProj.itemList.forEach(item => content.append(ItemCard(item)));
-
