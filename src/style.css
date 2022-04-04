@@ -42,12 +42,17 @@ header {
 
 /* Sidebar */
 nav {
-	grid-area: sidebar;
+	grid-area: sidebar;	
+}
+
+#hamburger {
+	height: 24px;
+	width: 24px;
 }
 
 /* Sidebar Categories */
 .sidebarCategory {
-	height: 6vh;
+	height: 40px;
 
 	display: grid;
 	grid-template-columns: 7fr 3fr;
@@ -67,16 +72,12 @@ nav {
 
 /* Project Container Details */
 #projects {
-	max-height: 58vh;
+	/* max-height: 500px; */
 
 	display: flex;
 
-	overflow: scroll;
-	overflow-x: hidden;
-}
-
-#projects::-webkit-scrollbar {
-	display: none;
+	/* overflow: scroll;
+	overflow-x: hidden; */
 }
 
 #projects[open] > #projectList::before {
@@ -103,17 +104,28 @@ nav {
 
 /* Project Container Summary */
 #projectList {
+	height: 40px;
+
 	display: flex;
 	align-items: center;
 
 	font-family: 'SF-Pro-Bold';
 	font-size: 16pt;
-
 	user-select: none;
 	list-style: none;
 	cursor: pointer;
 }
 
+#projectsContainer {
+	max-height: 460px;
+
+	overflow: scroll;
+	overflow-x: hidden;
+
+}
+#projectsContainer::-webkit-scrollbar {
+	display: none;
+}
 /* Project Card */
 .projectCard {
 	height: 48px;
@@ -153,8 +165,7 @@ nav {
 }
 
 .projectCardText {
-	margin: 1vh 0;
-	padding-left: 0vw;
+	margin: 1px 0;
 
 	border: none;
 
@@ -265,7 +276,7 @@ main {
 	justify-content: center;
 	text-align: center;
 
-	padding: 1vh 1vw;
+	padding: 4px;
 
 	font-family: 'SF-Pro';
 	font-size: 24pt;
@@ -274,16 +285,13 @@ main {
 /* Item Card */
 .itemCardDetails {
 	margin: 12px;
-
-	border: solid black 1px;
-	border-radius: 20px 0 20px 0;
 }
 
 .itemCardSummary {
-	height: 6vh;
+	height: 40px;
 
 	display: grid;
-	grid-template-columns: 1fr 6fr 13vw;
+	grid-template-columns: 1fr 6fr 180px;
 	align-items: center;
 
 	padding: 0 2vw;
@@ -302,10 +310,10 @@ main {
 	display: inline-block;
 
 	background: url('./Assets/radio_unchecked_light.svg');
-	background-size: 18pt;
+	background-size: 32px;
 
-	height: 18pt;
-	width: 18pt;
+	height: 32px;
+	width: 32px;
 }
 
 .itemCardCheckBox:checked:before {
@@ -313,27 +321,29 @@ main {
 	display: inline-block;
 
 	background: url('./Assets/task_check_light.svg');
-	background-size: 18pt;
+	background-size: 32px;
 
-	height: 18pt;
-	width: 18pt;
+	height: 32px;
+	width: 32px;
 }
 
 .itemCardTitle {
-	height: 4vh;
+	height: 32px;
+	width: 500px;
 
-	margin: 0 5vw;
+	margin: 0 12px;
 
 	text-align: center;
+	justify-self: center;
 
 	font-family: 'SF-Pro';
 	font-size: 18pt;
 }
 
 .itemCardDate {
-	height: 4vh;
+	height: 32px;
 
-	padding-left: 2vw;
+	padding-left: 12px;
 
 	font-family: 'SF-Pro';
 	font-size: 12pt;
@@ -341,7 +351,7 @@ main {
 
 /* Item Card Details */
 .itemCardDetailsContainer {
-	height: 24vh;
+	height: 180px;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -416,7 +426,7 @@ main {
 }
 
 .priorityLabel {
-	margin-left: 1vw;
+	margin-left: 8px;
 
 	font-family: 'SF-Pro';
 	font-size: 16pt;

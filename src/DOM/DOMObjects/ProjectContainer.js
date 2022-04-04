@@ -5,12 +5,12 @@ import { UIelement } from './UIelement';
 export const ProjectContainer = () => {
 	const details = UIelement('details', 'projects');
 	const summary = UIelement('summary', 'projectList');
-
+	const detailsContainer = UIelement('div', 'projectsContainer');
 	const projectList = ProjectDB();
 
 	const addProject = (project) => {
 		projectList.push(project);
-		details.append(ProjectCard(project));
+		detailsContainer.append(ProjectCard(project));
 	};
 
 	const update = () => {
@@ -24,7 +24,7 @@ export const ProjectContainer = () => {
 	
 	summary.UItext('Projects');
 
-	details.append(summary);
+	details.append(summary, detailsContainer);
 
 	return Object.assign(details, { projectList, addProject, update });
 };
