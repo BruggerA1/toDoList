@@ -3,7 +3,6 @@ import { SidebarCategory } from "./DOMObjects/SidebarCategory";
 import { ProjectContainer } from "./DOMObjects/ProjectContainer";
 import { AddButton } from "./DOMObjects/AddButton";
 import { Project } from "../Objects/Project";
-import { ui } from "..";
 
 export const Sidebar = () => {
 	const sidebar = UIelement('nav', 'sidebar');
@@ -11,7 +10,7 @@ export const Sidebar = () => {
 	const today = SidebarCategory('Today');
 	const week = SidebarCategory('Week');
 	const projectContainer = ProjectContainer();
-	const addProjectButton = AddButton('Project');
+	const addProjectButton = AddButton('project');
 	let projectCount = 1;
 
 	const addProject = () => {
@@ -20,7 +19,7 @@ export const Sidebar = () => {
 	
 		projectCount++;
 
-		ui.sidebar.updateCategories();
+		updateCategories();
 	};
 
 	const updateCategories = () => {

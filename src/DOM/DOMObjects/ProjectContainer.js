@@ -11,12 +11,13 @@ export const ProjectContainer = () => {
 	const addProject = (project) => {
 		projectList.push(project);
 		detailsContainer.append(ProjectCard(project));
+		update();
 	};
 
 	const update = () => {
-		details.UItext('');
-		details.append(summary);
-		projectList.forEach(project => details.append(ProjectCard(project)));
+		detailsContainer.UItext('');
+		projectList.forEach(project => detailsContainer.append(ProjectCard(project)));
+		details.append(summary,detailsContainer);
 
 	};
 
@@ -25,6 +26,5 @@ export const ProjectContainer = () => {
 	summary.UItext('Projects');
 
 	details.append(summary, detailsContainer);
-
 	return Object.assign(details, { projectList, addProject, update });
 };

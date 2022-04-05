@@ -12,11 +12,17 @@
 	src: url('./Assets/SF-Pro.ttf');
 
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 /* Global Properties */
 * {
+	--background-color: #18191A;
+	--card-color: #242526;
+	--hover-color: #3D3D3D;
+	--primary-text: #E4E6EB;
+	--secondary-text: #B0B3B8;
+
 	margin: 0;
 	padding: 0;
 
@@ -28,26 +34,45 @@ body {
 	height: 100vh;
 
 	display: grid;
-	grid-template-columns: 25vw 1fr;
-	grid-template-rows: 10vh 1fr;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: 50px 1fr;
 	grid-template-areas:
 		'banner banner'
-		'sidebar content';
+		'sidebar content'
+	;
+
+	background-color: var(--background-color);
 }
 
 /* Banner */
 header {
 	grid-area: banner;
+
+	display: flex;
+	align-items: center;
+
+	background-color: var(--card-color);
+}
+
+#menuButton {
+	height: 24pt;
+	width: 24pt;
+
+	margin: 6px;
+
+	border: none;
+	opacity: 60%;
+	background-image: url(./Assets/menu_button_dark.svg);
+	background-size: 24pt;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 /* Sidebar */
 nav {
-	grid-area: sidebar;	
-}
+	grid-area: sidebar;
 
-#hamburger {
-	height: 24px;
-	width: 24px;
+	background-color: var(--card-color);
 }
 
 /* Sidebar Categories */
@@ -63,28 +88,35 @@ nav {
 	font-size: 16pt;
 }
 
+.categoryCardText{
+	color: var(--primary-text);
+}
+
+.categoryCardLabel {
+	color: var(--secondary-text);
+}
 
 .sidebarCategory:hover,
 .categoryCardText:hover,
 .categoryCardLabel:hover {
-	background-color: rgb(230, 230, 230);
+	background-color: var(--hover-color);
 }
 
 /* Project Container Details */
 #projects {
-	/* max-height: 500px; */
-
 	display: flex;
 
-	/* overflow: scroll;
-	overflow-x: hidden; */
+	overflow: scroll;
+	overflow-x: hidden;
 }
-
+#projects::-webkit-scrollbar {
+	display: none;
+}
 #projects[open] > #projectList::before {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/chevron_down_light.svg');
+	background: url('./Assets/chevron_down_dark.svg');
 	background-size: 18pt;
 
 	height: 18pt;
@@ -95,7 +127,7 @@ nav {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/chevron_right_light.svg');
+	background: url('./Assets/chevron_right_dark.svg');
 	background-size: 18pt;
 
 	height: 18pt;
@@ -111,13 +143,16 @@ nav {
 
 	font-family: 'SF-Pro-Bold';
 	font-size: 16pt;
+
+	color: var(--primary-text);
+
 	user-select: none;
 	list-style: none;
 	cursor: pointer;
 }
 
 #projectsContainer {
-	max-height: 460px;
+	max-height: 500px;
 
 	overflow: scroll;
 	overflow-x: hidden;
@@ -129,32 +164,29 @@ nav {
 /* Project Card */
 .projectCard {
 	height: 48px;
-
 	display: grid;
-	grid-template-columns: 5vw 15vw 5vw;
+	grid-template-columns: 1fr 1fr 1fr;
 	align-items: center;
-	text-align: center;
 }
 
 .projectCard:hover {
-	background-color: rgb(230, 230, 230);
+	background-color: var(--hover-color);
 }
 
 .projectCard:hover > .projectCardLabel {
-	background-color: rgb(230, 230, 230);
+	background-color: var(--hover-color);
 }
 
 .deleteProject {
+	border: none;
 	height: 18pt;
 	width: 18pt;
 
 	margin: 6px;
 
-	border: none;
-
-	opacity: 40%;
+	opacity: 20%;
 	background-color: transparent;
-	background-image: url('./Assets/delete_cross_light.svg');
+	background-image: url('./Assets/delete_cross_dark.svg');
 	background-size: 18pt;
 
 	cursor: pointer;
@@ -165,14 +197,17 @@ nav {
 }
 
 .projectCardText {
+	height: 2em;
+	width: 120px;
 	margin: 1px 0;
+	padding-left: 4px;
 
 	border: none;
-
 	background-color: transparent;
 
 	font-family: 'SF-Pro';
-	font-size: 14pt;
+	font-size: 12pt;
+	color: var(--primary-text)
 }
 
 .projectCardText:focus {
@@ -180,24 +215,23 @@ nav {
 }
 
 .projectCardLabel {
-	margin: 2px 8px;
-	border-radius: 8px;
+	margin: 2px 2px;
+	padding-right: 12px;
 
 	align-self: center;
 	text-align: center;
 
 	font-family: 'SF-Pro';
-	font-size: 16pt;
-
+	font-size: 14pt;
 	cursor: pointer;
+	color: var(--secondary-text);
 }
 
 /* Add Project Button */
-#addProjectButton {
+#addprojectButton {
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
-
+	justify-content: center;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -205,11 +239,14 @@ nav {
 	margin: 12px;
 	padding: 8px;
 
+	background-color: transparent;
+
 	border: none;
 	border-radius: 4px;
 
 	font-family: SF-Pro-Bold;
-	font-size: 16pt;
+	font-size: 26pt;
+	color: var(--primary-text);
 
 	filter: drop-shadow(0px 1px 1px #000000);
 
@@ -217,60 +254,63 @@ nav {
 	cursor: pointer;
 }
 
-#addProjectButton::before {
+#addprojectButton::before {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/add_circle_light.svg');
-	background-size: 18pt;
+	background: url('./Assets/add_circle_dark.svg');
+	background-size: 24pt;
 
-	height: 18pt;
-	width: 18pt;
+	height: 24pt;
+	width: 24pt;
+	margin-top: 6px;
+	margin-right: 1px;
 }
+
 
 /* Content */
 main {
 	grid-area: content;
+	margin: 4px;
 }
 
 /* Add Item Button */
-#addItemButton {
+#additemButton {
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
 	text-align: center;
 
 	position: absolute;
+	margin: 10pt 8pt;
+	
+	background-color: transparent;
 
-	margin: 6px;
-	padding: 6px;
-
+	padding: 4pt;
 	border: none;
-	border-radius: 4px;
 
 	font-family: 'SF-Pro-Bold';
-	font-size: 14pt;
+	font-size: 18pt;
+	color: var(--primary-text);
 
-	filter: drop-shadow(0px 1px 1px #000000);
 
 	cursor: pointer;
 }
 
-#addItemButton::before {
+#additemButton::before {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/add_circle_light.svg');
-	background-size: 16pt;
+	background: url('./Assets/add_circle_dark.svg');
+	background-size: 20pt;
 
-	height: 16pt;
-	width: 16pt;
+	height: 20pt;
+	width: 20pt;
 }
 
 /* Current Project */
 #currentProject {
-	height: 48px;
-
+	height: 1.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -279,28 +319,38 @@ main {
 	padding: 4px;
 
 	font-family: 'SF-Pro';
-	font-size: 24pt;
+	font-size: 32pt;
+	color: var(--primary-text);
 }
 
 /* Item Card */
 .itemCardDetails {
-	margin: 12px;
+	margin: 6px;
+	background-color: var(--card-color);
+	border-radius: 18pt;
 }
 
 .itemCardSummary {
-	height: 40px;
+	height: 60px;
+
+	background-color: var(--card-color);
 
 	display: grid;
 	grid-template-columns: 1fr 6fr 180px;
 	align-items: center;
 
-	padding: 0 2vw;
+	padding-right: 6px;
+	border-radius: 18pt;
+}
+
+.itemCardSummary:hover {
+	cursor: pointer;
 }
 
 .itemCardCheckBox {
-	height: 32px;
-	width: 32px;
-
+	height: 24pt;
+	width: 24pt;
+	margin-left: 12px;
 	appearance: none;
 	cursor: pointer;
 }
@@ -309,26 +359,26 @@ main {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/radio_unchecked_light.svg');
-	background-size: 32px;
+	background: url('./Assets/radio_unchecked_dark.svg');
+	background-size: 24pt;
 
-	height: 32px;
-	width: 32px;
+	height: 24pt;
+	width: 24pt;
 }
 
 .itemCardCheckBox:checked:before {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/task_check_light.svg');
-	background-size: 32px;
+	background: url('./Assets/task_check_dark.svg');
+	background-size: 24pt;
 
-	height: 32px;
-	width: 32px;
+	height: 24pt;
+	width: 24pt;
 }
 
 .itemCardTitle {
-	height: 32px;
+	height: 2em;
 	width: 500px;
 
 	margin: 0 12px;
@@ -338,24 +388,38 @@ main {
 
 	font-family: 'SF-Pro';
 	font-size: 18pt;
+	color: var(--primary-text);
+	background-color: var(--card-color);
+	border: none;
 }
 
 .itemCardDate {
 	height: 32px;
-
+	width: 150px;
+	margin-right: 12px;
 	padding-left: 12px;
 
 	font-family: 'SF-Pro';
 	font-size: 12pt;
+	color: var(--secondary-text);
+
+	background-color: transparent;
+	border: none;
 }
 
+.itemCardDate::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+	opacity: 60%;
+}
+.itemCardDate::-webkit-calendar-picker-indicator:hover {
+	cursor: pointer;
+}
 /* Item Card Details */
 .itemCardDetailsContainer {
-	height: 180px;
-
+	height: 300px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 6fr 4fr 10fr 4fr;
+	grid-template-rows: 50px 60px 140px 50px;
 	grid-template-areas:
 		'priority priority'
 		'description description'
@@ -389,11 +453,13 @@ main {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/radio_unchecked_light.svg');
+	background: url('./Assets/radio_unchecked_dark.svg');
 	background-size: 24px;
 
 	height: 24px;
 	width: 24px;
+
+	opacity: 60%;
 
 	cursor: pointer;
 }
@@ -402,7 +468,7 @@ main {
 	content: '';
 	display: inline-block;
 
-	background: url('./Assets/radio_check_light.svg');
+	background: url('./Assets/radio_check_dark.svg');
 	background-size: 24px;
 
 	height: 24px;
@@ -420,9 +486,13 @@ main {
 	height: 24px;
 	width: 24px;
 
-	opacity: 40%;
+	opacity: 20%;
 
 	cursor: pointer;
+}
+
+.priorityRadio:checked:disabled::before {
+	opacity: 60%;
 }
 
 .priorityLabel {
@@ -430,56 +500,74 @@ main {
 
 	font-family: 'SF-Pro';
 	font-size: 16pt;
-}
 
+	color: var(--secondary-text);
+}
+.priorityLabel:hover {
+	cursor: pointer;
+}
 .itemDescription {
 	grid-area: description;
-
 	text-align: center;
 
 	border: none;
+	
+	background-color: var(--card-color);
 
 	font-family: 'SF-Pro-Bold';
-	font-size: 10pt;
+	font-size: 14pt;
+	color: var(--primary-text);
 }
 
 .itemNotes {
 	grid-area: notes;
-
 	text-align: center;
-
-	padding: 10px;
-
+	padding: 0 8px;
+	margin: 12px;
 	border: none;
+	background-color: var(--card-color);
 
 	font-family: 'SF-Pro';
 	font-size: 14pt;
+	color: var(--secondary-text);
 }
-
+.itemNotes::-webkit-scrollbar {
+	display: none;
+}
 /* Item Card Buttons */
 .itemEdit {
 	grid-area: edit;
 	justify-self: left;
-
-	width: 150px;
-
-	margin: 4px;
+	align-self: center;
 
 	border: none;
+	
+	height: 24pt;
+	width: 24pt;
+	margin-left: 12px;
 
+	background-image: url('./Assets/edit_button_dark.svg');
+	background-color: transparent;
+	background-size: 24pt;
 	font-family: 'SF-Pro';
+	cursor: pointer;
 }
+
 
 .itemDelete {
 	grid-area: delete;
 	justify-self: right;
+	align-self: center;
+	height: 24pt;
+	width: 24pt;
+	margin-right: 12px;
 
-	width: 150px;
-
-	margin: 4px;
+	background-image: url('./Assets/delete_trash_dark.svg');
+	background-color: transparent;
+	background-size: 24pt;
 
 	border: none;
 
 	font-family: 'SF-Pro';
-
+	cursor: pointer;
 }

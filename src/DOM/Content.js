@@ -6,7 +6,7 @@ import { ui } from "..";
 
 export const Content = () => {
 	const content = UIelement('main', 'content');
-	const addItemButton = AddButton('Item');
+	const addItemButton = AddButton('item');
 	const currentProject = UIelement('div', 'currentProject');
 	let itemCount = 1;
 

@@ -7,16 +7,14 @@ export const ItemCard = (item) => {
 	const details = CardElement('details', 'itemCardDetails');
 	const summary = CardElement('summary', 'itemCardSummary');
 	const detailsContainer = CardElement('div', 'itemCardDetailsContainer');
-
 	const itemCheckBox = InputElement('checkbox', 'false', 'itemCardCheckBox');
 	const itemTitle = InputElement('text', 'true', 'itemCardTitle', item.title);
 	const itemDate = InputElement('date', 'true', 'itemCardDate', item.dueDate);
 	const itemPriority = ItemPriority(item);
 	const itemDescription = InputElement('text', 'true', 'itemDescription', item.description);
 	const itemNotes = InputElement('textarea', 'true', 'itemNotes', item.notes);
-	const itemEdit = InputElement('button', 'true', 'itemEdit', 'edit');
-	const itemDelete = InputElement('button', 'true', 'itemDelete', 'delete');
-
+	const itemEdit = InputElement('button', 'true', 'itemEdit', '');
+	const itemDelete = InputElement('button', 'true', 'itemDelete', '');
 	let editMode = false;
 
 	const sidebar = ui.sidebar;
