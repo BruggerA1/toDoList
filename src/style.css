@@ -527,6 +527,8 @@ main {
 	border: none;
 	background-color: var(--card-color);
 
+	resize: none;
+
 	font-family: 'SF-Pro';
 	font-size: 14pt;
 	color: var(--secondary-text);
