@@ -15,39 +15,19 @@ export const SidebarCategory = (categoryText) => {
 				: cardLabel.UItext(projectList.getWeekItems().length);
 	}
 
-	//test
-	const loadAllProjects = () => {
+	const loadCategory = () => {
 		const projectList = ui.sidebar.projectContainer.projectList;
-		content.reload();
 
+		content.reload();
 		content.currentProject.UItext(categoryText);
 
-		projectList.getItems().forEach(item => content.append(ItemCard(item)));
-	};
-
-	const loadTodayProjects = () => {
-		const projectList = ui.sidebar.projectContainer.projectList;
-		content.reload();
-
-		content.currentProject.UItext(categoryText);
-
-		projectList.getTodayItems().forEach(item => content.append(ItemCard(item)));
-	};
-
-	const loadWeekProjects = () => {
-		const projectList = ui.sidebar.projectContainer.projectList;
-		content.reload();
-
-		content.currentProject.UItext(categoryText);
-
-		projectList.getWeekItems().forEach(item => content.append(ItemCard(item)));
+		(categoryText == 'All') ? projectList.getItems().forEach(item => content.append(ItemCard(item)))
+			: (categoryText == 'Today') ? projectList.getTodayItems().forEach(item => content.append(ItemCard(item)))
+				: projectList.getWeekItems().forEach(item => content.append(ItemCard(item)))
 	};
 
 	sidebarCategory.addEventListener('click', () => {
-		const projectList = ui.sidebar.projectContainer.projectList;
-		(categoryText == 'All') ? loadAllProjects()
-			: (categoryText == 'Today') ? loadTodayProjects()
-				: loadWeekProjects();
+		loadCategory();
 	})
 
 	sidebarCategory.append(cardText, cardLabel);

@@ -32,7 +32,7 @@ export const ProjectCard = (project) => {
 		projectCard.remove();
 
 		sidebar.updateCategories();
-
+		
 		if(content.currentProject.innerText == cardText.value) content.UItext('');
 	};
 
