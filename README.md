@@ -1,3 +1,4 @@
 # TO DO
-+ Storage
-+ CSS
++ Local Storage
++ Refine CSS
++ Firebase
