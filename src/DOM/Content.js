@@ -8,6 +8,8 @@ export const Content = () => {
 	const content = UIelement('main', 'content');
 	const addItemButton = AddButton('item');
 	const currentProject = UIelement('div', 'currentProject');
+	const itemCardContainer = UIelement('div', 'itemCardContainer');
+
 	let itemCount = 1;
 
 	const addItem = () => {
@@ -17,7 +19,7 @@ export const Content = () => {
 		projects.projectList.forEach(project => {
 			if (project.title == currentProject.innerText) {
 				const newItem = Item(`item ${itemCount}`)
-				content.append(ItemCard(newItem));
+				itemCardContainer.append(ItemCard(newItem));
 				project.addItem(newItem);
 				itemCount++;
 			};
@@ -28,7 +30,8 @@ export const Content = () => {
 
 	const reload = () => {
 		content.UItext('');
-		content.append(addItemButton, currentProject);
+		itemCardContainer.UItext('');
+		content.append(addItemButton, currentProject, itemCardContainer);
 	};
 
 	addItemButton.addEventListener('click', () => {
@@ -37,5 +40,5 @@ export const Content = () => {
 
 	content.append(currentProject);
 
-	return Object.assign(content, { addItemButton, currentProject, addItem, reload, });
+	return Object.assign(content, { addItemButton, currentProject, itemCardContainer, addItem, reload, });
 };

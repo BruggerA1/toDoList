@@ -161,7 +161,7 @@ nav {
 }
 
 #projectsContainer {
-	max-height: 500px;
+	max-height: 505px;
 
 	overflow: hidden scroll;
 }
@@ -342,6 +342,15 @@ main {
 	font-size: 32pt;
 }
 
+#itemCardContainer {
+	max-height: 630px;
+
+	overflow: scroll;
+}
+
+#itemCardContainer::-webkit-scrollbar {
+	display: none;
+}
 /* Item Card */
 .itemCardDetails {
 	margin: 6px;

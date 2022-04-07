@@ -18,9 +18,7 @@ export const ProjectCard = (project) => {
 
 	const loadProject = () => {
 		content.reload();
-
 		content.currentProject.UItext(cardText.value);
-
 		project.itemList.forEach(item => content.append(ItemCard(item)));
 	};
 

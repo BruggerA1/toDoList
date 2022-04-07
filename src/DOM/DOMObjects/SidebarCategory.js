@@ -21,9 +21,9 @@ export const SidebarCategory = (categoryText) => {
 		content.reload();
 		content.currentProject.UItext(categoryText);
 
-		(categoryText == 'All') ? projectList.getItems().forEach(item => content.append(ItemCard(item)))
-			: (categoryText == 'Today') ? projectList.getTodayItems().forEach(item => content.append(ItemCard(item)))
-				: projectList.getWeekItems().forEach(item => content.append(ItemCard(item)))
+		(categoryText == 'All') ? projectList.getItems().forEach(item => content.itemCardContainer.append(ItemCard(item)))
+			: (categoryText == 'Today') ? projectList.getTodayItems().forEach(item => content.itemCardContainer.append(ItemCard(item)))
+				: projectList.getWeekItems().forEach(item => content.itemCardContainer.append(ItemCard(item)))
 	};
 
 	sidebarCategory.addEventListener('click', () => {
